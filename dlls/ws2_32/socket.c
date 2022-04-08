@@ -2311,13 +2311,13 @@ INT WINAPI WSAIoctl(SOCKET s, DWORD code, LPVOID in_buff, DWORD in_size, LPVOID 
             return -1;
         }
         if (GetBestRoute( daddr_in->sin_addr.S_un.S_addr, 0, &row ) != NOERROR ||
-            GetIpAddrTable( NULL, &size, FALSE ) != ERROR_INSUFFICIENT_BUFFER)
+            GetIpAddrTable2( NULL, &size, FALSE ) != ERROR_INSUFFICIENT_BUFFER)
         {
             SetLastError( WSAEFAULT );
             return -1;
         }
         ipAddrTable = malloc( size );
-        if (GetIpAddrTable( ipAddrTable, &size, FALSE ))
+        if (GetIpAddrTable2( ipAddrTable, &size, FALSE ))
         {
             free( ipAddrTable );
             SetLastError( WSAEFAULT );
